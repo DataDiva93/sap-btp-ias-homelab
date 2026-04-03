@@ -1,0 +1,4 @@
+status,firstName,lastName,mail
+active,Lab,Admin,labuser.admin@test.com
+active,Lab,Viewer,labuser.viewer@test.com
+active,Lab,ReadOnly,labuser.readonly@test.com
