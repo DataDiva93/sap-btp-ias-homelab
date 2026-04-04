@@ -1,0 +1,10 @@
+.DS_Store
+**/.DS_Store
+*.env
+.env.*
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.backup
+__pycache__/
+*.pyc
+.pytest_cache/
