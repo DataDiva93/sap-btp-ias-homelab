@@ -1,29 +1,24 @@
 name: Validate IAS Scripts
 
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+on: [push, pull_request]
 
 jobs:
   lint-and-test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
       - name: Install dependencies
         run: pip install -r scripts/requirements.txt
 
-      - name: Lint with flake8
-        run: flake8 scripts/ --max-line-length=100
+      - name: Lint
+        run: flake8 scripts/
 
-      - name: Run validation dry-run
+      - name: Run validation
         run: python scripts/validate-auth.py --dry-run
