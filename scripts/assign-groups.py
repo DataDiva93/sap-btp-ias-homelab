@@ -9,7 +9,10 @@ import os
 from datetime import datetime
 
 # IAS Tenant Configuration
-IAS_TENANT_URL = os.environ.get("IAS_TENANT_URL", "https://ajnlm5lkp.trial-accounts.ondemand.com")
+IAS_TENANT_URL = os.environ.get(
+    "IAS_TENANT_URL",
+    "https://ajnlm5lkp.trial-accounts.ondemand.com"
+)
 IAS_CLIENT_ID = os.environ.get("IAS_CLIENT_ID", "")
 IAS_CLIENT_SECRET = os.environ.get("IAS_CLIENT_SECRET", "")
 
@@ -41,7 +44,9 @@ def get_user_id(token, email):
         "Content-Type": "application/scim+json"
     }
     params = {"filter": f'emails.value eq "{email}"'}
-    response = requests.get(SCIM_USERS_ENDPOINT, headers=headers, params=params)
+    response = requests.get(
+        SCIM_USERS_ENDPOINT, headers=headers, params=params
+    )
     response.raise_for_status()
 
     resources = response.json().get("Resources", [])
@@ -59,7 +64,9 @@ def get_group_id(token, group_name):
         "Content-Type": "application/scim+json"
     }
     params = {"filter": f'displayName eq "{group_name}"'}
-    response = requests.get(SCIM_GROUPS_ENDPOINT, headers=headers, params=params)
+    response = requests.get(
+        SCIM_GROUPS_ENDPOINT, headers=headers, params=params
+    )
     response.raise_for_status()
 
     resources = response.json().get("Resources", [])

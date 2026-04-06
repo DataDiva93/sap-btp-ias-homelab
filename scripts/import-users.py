@@ -10,7 +10,10 @@ import os
 from datetime import datetime
 
 # IAS Tenant Configuration
-IAS_TENANT_URL = os.environ.get("IAS_TENANT_URL", "https://ajnlm5lkp.trial-accounts.ondemand.com")
+IAS_TENANT_URL = os.environ.get(
+    "IAS_TENANT_URL",
+    "https://ajnlm5lkp.trial-accounts.ondemand.com"
+)
 IAS_CLIENT_ID = os.environ.get("IAS_CLIENT_ID", "")
 IAS_CLIENT_SECRET = os.environ.get("IAS_CLIENT_SECRET", "")
 
@@ -87,7 +90,8 @@ def import_users_from_csv(csv_file_path):
                 print(f"[SUCCESS] Created: {row['mail']}")
                 results["success"].append(row["mail"])
             else:
-                print(f"[FAILED]  {row['mail']} - {response.get('detail', 'Unknown error')}")
+                error = response.get('detail', 'Unknown error')
+                print(f"[FAILED]  {row['mail']} - {error}")
                 results["failed"].append(row["mail"])
 
     print("-" * 60)
@@ -99,5 +103,8 @@ def import_users_from_csv(csv_file_path):
 
 
 if __name__ == "__main__":
-    csv_path = os.path.join(os.path.dirname(__file__), "../csv-templates/user-import-template.csv")
+    csv_path = os.path.join(
+        os.path.dirname(__file__),
+        "../csv-templates/user-import-template.csv"
+    )
     import_users_from_csv(csv_path)
