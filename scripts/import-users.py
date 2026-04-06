@@ -6,7 +6,6 @@ BPS Cloud - SAP BTP IAS Home Lab
 
 import requests
 import csv
-import json
 import os
 from datetime import datetime
 
